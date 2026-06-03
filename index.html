@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵猫传：无名之火与十二生肖纪略</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #d4af37;
+            --deep-purple: #2d1b4e;
+            --mystic-blue: #1a237e;
+            --fire-orange: #ff6b35;
+            --jade-green: #00a86b;
+            --shadow-black: #0a0a0f;
+            --mist-gray: rgba(255,255,255,0.08);
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: var(--shadow-black);
+            color: #e8e8e8;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* 粒子背景 */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-particle 15s infinite ease-in-out;
+            box-shadow: 0 0 10px var(--primary-gold), 0 0 20px var(--primary-gold);
+        }
+
+        @keyframes float-particle {
+            0%, 100% { 
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.3; }
+            100% { 
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: linear-gradient(180deg, rgba(10,10,15,0.95) 0%, transparent 100%);
+            transition: all 0.5s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        nav.scrolled {
+            background: rgba(10,10,15,0.98);
+            box-shadow: 0 4px 30px rgba(212,175,55,0.1);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            text-shadow: 0 0 30px rgba(212,175,55,0.5);
+            cursor: pointer;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(232,232,232,0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-gold), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 英雄区域 - 开篇楔子 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center bottom, rgba(45,27,78,0.4) 0%, transparent 70%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 60%);
+            animation: pulse-glow 8s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .subtitle-badge {
+            display: inline-block;
+            padding: 0.6rem 1.8rem;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            margin-bottom: 2rem;
+            position: relative;
+            background: rgba(212,175,55,0.05);
+            animation: fade-in-up 1s ease-out;
+        }
+
+        .main-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--primary-gold) 50%, #fff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite, fade-in-up 1.2s ease-out;
+            text-shadow: none;
+            filter: drop-shadow(0 0 40px rgba(212,175,55,0.3));
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: rgba(232,232,232,0.75);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 2;
+            animation: fade-in-up 1.4s ease-out;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            color: rgba(232,232,232,0.5);
+            font-size: 0.85rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        .scroll-indicator .arrow {
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid var(--primary-gold);
+            border-bottom: 2px solid var(--primary-gold);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(12px); }
+        }
+
+        /* 通用区块样式 */
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-number {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1rem;
+            color: var(--primary-gold);
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            margin: 0 auto 1.5rem;
+        }
+
+        .section-subtitle {
+            color: rgba(232,232,232,0.65);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 楔子区域 */
+        .prologue {
+            background: linear-gradient(180deg, 
+                var(--shadow-black) 0%, 
+                rgba(45,27,78,0.25) 50%,
+                var(--shadow-black) 100%
+            );
+        }
+
+        .story-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 24px;
+            padding: 3.5rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 6rem;
+            color: rgba(212,175,55,0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 2.2;
+            color: rgba(232,232,232,0.9);
+            text-indent: 2em;
+        }
+
+        .story-text + .story-text {
+            margin-top: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+
+        /* 角色卡片 */
+        .character-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .character-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--card-color, var(--primary-gold)), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(212,175,55,0.35);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4), 0 0 40px rgba(212,175,55,0.1);
+        }
+
+        .character-card:hover::before {
+            opacity: 1;
+        }
+
+        .character-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            border: 2px solid rgba(212,175,55,0.25);
+            position: relative;
+        }
+
+        .character-icon::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px dashed rgba(212,175,55,0.2);
+            animation: rotate-slow 20s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            to { transform: rotate(360deg); }
+        }
+
+        .character-name {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.8rem;
+        }
+
+        .character-title {
+            font-size: 0.85rem;
+            color: var(--primary-gold);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .character-desc {
+            font-size: 0.95rem;
+            color: rgba(232,232,232,0.7);
+            line-height: 1.8;
+        }
+
+        /* 第一卷 - 新手引导 */
+        .chapter-one {
+            background: linear-gradient(180deg,
+                var(--shadow-black) 0%,
+                rgba(26,35,126,0.15) 30%,
+                var(--shadow-black) 100%
+            );
+        }
+
+        .encounter-scene {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .scene-visual {
+            position: relative;
+            aspect-ratio: 1;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .scene-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(212,175,55,0.2);
+            animation: orbit 20s linear infinite;
+        }
+
+        .scene-circle:nth-child(1) {
+            inset: 0;
+            border-style: dashed;
+            animation-duration: 30s;
+        }
+
+        .scene-circle:nth-child(2) {
+            inset: 15%;
+            border-color: rgba(212,175,55,0.15);
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+
+        .scene-circle:nth-child(3) {
+            inset: 30%;
+            border-color: rgba(212,175,55,0.1);
+            animation-duration: 20s;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .scene-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            box-shadow: 0 0 60px rgba(212,175,55,0.3);
+        }
+
+        .scene-content h3 {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .scene-content p {
+            color: rgba(232,232,232,0.8);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+
+        .gameplay-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            padding: 0.5rem 1.2rem;
+            background: rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(212,175,55,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* 第二卷 - 九大神域 */
+        .chapter-two {
+            background: linear-gradient(180deg,
+                var(--shadow-black) 0%,
+                rgba(0,168,107,0.08) 20%,
+                rgba(26,35,126,0.08) 50%,
+                rgba(255,107,53,0.06) 80%,
+                var(--shadow-black) 100%
+            );
+        }
+
+        .realms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .realm-section {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.5s ease;
+        }
+
+        .realm-section:hover {
+            border-color: rgba(212,175,55,0.25);
+            background: rgba(255,255,255,0.04);
+            transform: translateY(-5px);
+        }
+
+        .realm-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+        }
+
+        .realm-name {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .realm-symbol {
+            font-size: 0.85rem;
+            color: var(--primary-gold);
+            letter-spacing: 2px;
+        }
+
+        .realm-list {
+            list-style: none;
+        }
+
+        .realm-item {
+            padding: 1.2rem 1rem;
+            border-left: 3px solid transparent;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 0 10px 10px 0;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .realm-item:hover {
+            border-left-color: var(--primary-gold);
+            background: rgba(212,175,55,0.08);
+            padding-left: 1.5rem;
+        }
+
+        .realm-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .zodiac-name {
+            font-weight: 600;
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        .zodiac-location {
+            font-size: 0.8rem;
+            color: var(--primary-gold);
+            padding: 0.2rem 0.8rem;
+            background: rgba(212,175,55,0.1);
+            border-radius: 10px;
+        }
+
+        .zodiac-desc {
+            font-size: 0.88rem;
+            color: rgba(232,232,232,0.65);
+            line-height: 1.7;
+        }
+
+        /* 第三卷 */
+        .chapter-three {
+            background: linear-gradient(180deg,
+                var(--shadow-black) 0%,
+                rgba(139,69,19,0.12) 40%,
+                var(--shadow-black) 100%
+            );
+        }
+
+        .confrontation-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 3rem;
+            align-items: start;
+            margin-top: 4rem;
+        }
+
+        .confront-character {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 16px;
+            position: sticky;
+            top: 120px;
+        }
+
+        .confront-avatar {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212,175,55,0.25) 0%, rgba(212,175,175,0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 3px solid rgba(212,175,55,0.3);
+            box-shadow: 0 0 40px rgba(212,175,55,0.2);
+            position: relative;
+        }
+
+        .confront-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,175,55,0.15);
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .confront-name {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .confront-role {
+            font-size: 0.9rem;
+            color: var(--primary-gold);
+        }
+
+        .battle-narrative {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .narrative-phase {
+            margin-bottom: 3rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .narrative-phase:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .phase-label {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(212,175,55,0.15);
+            color: var(--primary-gold);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .phase-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .phase-content {
+            color: rgba(232,232,232,0.8);
+            line-height: 2;
+            font-size: 1.02rem;
+        }
+
+        .dialogue-box {
+            background: rgba(212,175,55,0.05);
+            border-left: 3px solid var(--primary-gold);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: rgba(232,232,232,0.9);
+        }
+
+        /* 第四卷 */
+        .chapter-four {
+            background: linear-gradient(180deg,
+                var(--shadow-black) 0%,
+                rgba(0,100,150,0.15) 30%,
+                rgba(26,35,126,0.15) 60%,
+                var(--shadow-black) 100%
+            );
+        }
+
+        .final-battle {
+            position: relative;
+            margin-top: 4rem;
+        }
+
+        .dragon-altar {
+            text-align: center;
+            padding: 5rem 3rem;
+            background: radial-gradient(ellipse at center, rgba(0,100,200,0.15) 0%, transparent 70%);
+            border: 1px solid rgba(0,150,255,0.15);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dragon-altar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0,150,255,0.1), transparent, rgba(212,175,55,0.1), transparent);
+            animation: rotate-slow 15s linear infinite;
+        }
+
+        .dragon-icon {
+            font-size: 6rem;
+            display: block;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 30px rgba(0,150,255,0.5));
+            animation: dragon-float 4s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes dragon-float {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            50% { transform: translateY(-15px) scaleY(1.02); }
+        }
+
+        .dragon-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dragon-desc {
+            font-size: 1.1rem;
+            color: rgba(232,232,232,0.75);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .alliance-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .alliance-member {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0.05) 100%);
+            border: 2px solid rgba(212,175,55,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .alliance-member:hover {
+            transform: scale(1.2) translateY(-8px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.3);
+            z-index: 10;
+        }
+
+        .alliance-member .tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background: rgba(10,10,15,0.98);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212,175,175,0.2);
+        }
+
+        .alliance-member:hover .tooltip {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* 终局选择 */
+        .ending {
+            background: linear-gradient(180deg,
+                var(--shadow-black) 0%,
+                rgba(139,0,0,0.12) 25%,
+                rgba(45,27,78,0.2) 50%,
+                rgba(0,168,107,0.12) 75%,
+                var(--shadow-black) 100%
+            );
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .choices-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .choice-card {
+            position: relative;
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .choice-dark {
+            background: linear-gradient(135deg, rgba(80,0,0,0.3) 0%, rgba(20,0,0,0.5) 100%);
+            border: 2px solid rgba(255,50,50,0.2);
+        }
+
+        .choice-dark:hover {
+            border-color: rgba(255,50,50,0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(255,0,0,0.2);
+        }
+
+        .choice-light {
+            background: linear-gradient(135deg, rgba(0,100,80,0.3) 0%, rgba(0,50,40,0.5) 100%);
+            border: 2px solid rgba(0,200,150,0.2);
+        }
+
+        .choice-light:hover {
+            border-color: rgba(0,200,150,0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0,200,150,0.2);
+        }
+
+        .choice-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+
+        .choice-dark .choice-badge {
+            background: rgba(255,50,50,0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255,50,50,0.3);
+        }
+
+        .choice-light .choice-badge {
+            background: rgba(0,200,150,0.2);
+            color: #4ecdc4;
+            border: 1px solid rgba(0,200,150,0.3);
+        }
+
+        .choice-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .choice-subtitle {
+            font-size: 0.95rem;
+            color: rgba(232,232,232,0.6);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .choice-content {
+            flex-grow: 1;
+        }
+
+        .choice-scene-title {
+            font-weight: 600;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .choice-scene-title::before {
+            content: '◆';
+            font-size: 0.7rem;
+        }
+
+        .choice-scene-text {
+            color: rgba(232,232,232,0.75);
+            font-size: 0.95rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .choice-result {
+            margin-top: auto;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .choice-dark .choice-result {
+            border-left: 3px solid #ff4444;
+        }
+
+        .choice-light .choice-result {
+            border-left: 3px solid #4ecdc4;
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .choice-dark .result-label {
+            color: #ff6b6b;
+        }
+
+        .choice-light .result-label {
+            color: #4ecdc4;
+        }
+
+        .result-text {
+            font-size: 0.92rem;
+            color: rgba(232,232,232,0.8);
+            line-height: 1.8;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--shadow-black);
+            border-top: 1px solid rgba(212,175,55,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-quote {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 1.4rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 2;
+        }
+
+        .footer-copyright {
+            color: rgba(232,232,232,0.4);
+            font-size: 0.9rem;
+        }
+
+        .footer-hearts {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+        }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 3rem;
+            right: 3rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0.1) 100%);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            color: var(--primary-gold);
+            font-size: 1.3rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, rgba(212,175,55,0.3) 0%, rgba(212,175,55,0.15) 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+        }
+
+        /* 滚动显示动画 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .realms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .confrontation-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .confront-character {
+                position: static;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 1.5rem;
+                text-align: left;
+                align-items: center;
+            }
+
+            .confront-avatar {
+                margin: 0;
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+
+            .choices-container {
+                grid-template-columns: 1fr;
+            }
+
+            .encounter-scene {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            .story-card {
+                padding: 2rem;
+            }
+
+            .character-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .alliance-grid {
+                gap: 0.7rem;
+            }
+
+            .alliance-member {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+        }
+
+        /* 加载动画 */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--shadow-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-cat {
+            font-size: 4rem;
+            animation: cat-dance 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes cat-dance {
+            from { transform: translateY(0) rotate(-5deg); }
+            to { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .loader-text {
+            font-family: 'ZCOOL XiaoWei', serif;
+            color: var(--primary-gold);
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+        }
+
+        /* 音乐/音效控制提示 */
+        .audio-hint {
+            position: fixed;
+            bottom: 3rem;
+            left: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(10,10,15,0.8);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: rgba(232,232,232,0.6);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .audio-hint:hover {
+            border-color: rgba(212,175,55,0.4);
+            color: var(--primary-gold);
+        }
+
+        /* 图片展示样式 */
+        .story-image {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .story-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(212,175,55,0.1);
+            transition: all 0.5s ease;
+        }
+
+        .story-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.6), 0 0 50px rgba(212,175,55,0.2);
+        }
+
+        .image-caption {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--primary-gold);
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+
+        /* 宣传图横幅样式 */
+        .promo-banner {
+            width: 100%;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(212,175,55,0.3);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(212,175,55,0.15);
+        }
+
+        .promo-banner img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .promo-banner:hover img {
+            transform: scale(1.02);
+        }
+
+        /* 海报图样式 */
+        .poster-image {
+            max-width: 500px;
+            margin: 2.5rem auto;
+            text-align: center;
+        }
+
+        .poster-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.25);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .poster-image {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载动画 -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-cat">🐱</div>
+            <div class="loader-text">灵猫传 · 载入中</div>
+        </div>
+    </div>
+
+    <!-- 粒子背景 -->
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- 导航栏 -->
+    <nav id="navbar">
+        <div class="nav-content">
+            <div class="logo" onclick="scrollToSection('hero')">灵猫传</div>
+            <ul class="nav-links">
+                <li><a href="#prologue">楔子</a></li>
+                <li><a href="#chapter-one">第一卷</a></li>
+                <li><a href="#chapter-two">第二卷</a></li>
+                <li><a href="#chapter-three">第三卷</a></li>
+                <li><a href="#chapter-four">第四卷</a></li>
+                <li><a href="#ending">终局</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <span class="subtitle-badge">✦ 古风仙侠互动叙事 ✦</span>
+            <h1 class="main-title">灵猫传：无名之火与十二生肖纪略</h1>
+            <p class="hero-description">
+                天地初开，十二生肖掌管岁月轮转。然而在所有传说里，都缺少一个名字——猫。<br>
+                它是失败者、落选者、被遗忘者。诞生于无名之地的边境。<br>
+                如今，它决意抖落尘埃，踏上寻找真相的逆天之路。
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button onclick="scrollToSection('prologue')" style="
+                    padding: 1rem 2.5rem;
+                    background: linear-gradient(135deg, var(--primary-gold) 0%, #b8941e 100%);
+                    color: #000;
+                    border: none;
+                    border-radius: 30px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    letter-spacing: 2px;
+                    transition: all 0.3s ease;
+                    font-family: inherit;
+                " onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 30px rgba(212,175,55,0.4)'" 
+                   onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                    开始阅读
+                </button>
+                <button onclick="scrollToSection('ending')" style="
+                    padding: 1rem 2.5rem;
+                    background: transparent;
+                    color: var(--primary-gold);
+                    border: 1px solid var(--primary-gold);
+                    border-radius: 30px;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    letter-spacing: 2px;
+                    transition: all 0.3s ease;
+                    font-family: inherit;
+                " onmouseover="this.style.background='rgba(212,175,55,0.1)';this.style.transform='translateY(-3px)'" 
+                   onmouseout="this.style.background='transparent';this.style.transform='translateY(0)'">
+                    探索结局
+                </button>
+            </div>
+
+            <!-- 宣传图 -->
+            <div class="promo-banner reveal" style="margin-top: 3.5rem;">
+                <img src="./宣传图.png" alt="灵猫传宣传图">
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToSection('prologue')">
+            <span>向下探索</span>
+            <div class="arrow"></div>
+        </div>
+    </section>
+
+    <!-- 楔子：无名之地的遗弃者 -->
+    <section class="prologue" id="prologue">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-number">— 楔子 —</span>
+                <h2 class="section-title">无名之地的遗弃者</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">天地初开之时，众神为了维系人间四时与命运轮转，在万千生灵中选出了十二位灵兽</p>
+            </div>
+
+            <div class="story-card reveal">
+                <p class="story-text">自此，<span class="highlight">十二生肖</span>掌管岁月、节令、昼夜与众生气运。它们高居天穹，被世人铭记，被香火供奉，成为世界秩序的一部分。但在所有传说里，都缺少一个名字——<span class="highlight">猫</span>。</p>
+                
+                <p class="story-text">有人说，它因为贪睡错过了渡河；有人说，它被鼠欺骗，失去了资格；也有人说，它从未真正被选中过。千百年来，这个名字像一个被故意抹去的空白，逐渐沦为孩童口中的荒诞故事。</p>
+                
+                <p class="story-text">然而，在十二生肖光辉照耀不到的地方，还存在着一片被称为<span class="highlight">「无名之地」</span>的边境。那里聚集着未被历史记录的生灵：<strong>失败者、落选者、被遗忘者</strong>。它们无法进入神话，也不被世界承认。</p>
+                
+                <p class="story-text">而<span class="highlight">猫</span>，就诞生在那里。不知过了几千几万载，维系生肖秩序的古老力量竟开始逐渐崩裂。原本稳定的四季与命数频生异变：夏降飞雪，冬起惊雷。猫也于此时第一次探听到了天机——当年的生肖选拔，或许并不像传说中那样简单。</p>
+                
+                <p class="story-text">于是，它决意<span class="highlight">抖落身上的尘埃</span>，离开无名之地，踏上前往十二生肖神域的旅程。它要寻找真相。也要向这个世界证明：即使没有被命运选中，即使名字从未被刻入历史，<strong>它依然有资格，被世界记住。</strong></p>
+            </div>
+
+            <!-- 背景游戏界面图 -->
+            <div class="story-image reveal">
+                <img src="./背景游戏界面.png" alt="楔子背景">
+                <p class="image-caption">图1 楔子——十二生肖与猫之渊源</p>
+            </div>
+
+            <!-- 核心角色预览 -->
+            <div class="reveal" style="margin-top: 5rem;">
+                <h3 style="text-align: center; font-family: 'ZCOOL XiaoWei', serif; font-size: 1.8rem; margin-bottom: 3rem; color: var(--primary-gold);">核心角色</h3>
+                <div class="character-showcase">
+                    <div class="character-card" style="--card-color: #d4af37;">
+                        <div class="character-icon">🐱</div>
+                        <h4 class="character-name">灵猫</h4>
+                        <p class="character-title">无名之地的遗弃者</p>
+                        <p class="character-desc">诞生于神话之外的生灵，历经千年等待，终于踏上寻找真相与正名的旅程。身负无名之地的万千期盼。</p>
+                    </div>
+                    <div class="character-card" style="--card-color: #888;">
+                        <div class="character-icon">🐭</div>
+                        <h4 class="character-name">子鼠</h4>
+                        <p class="character-title">十二生肖之首</p>
+                        <p class="character-desc">位列生肖首位，手持点妖簿。当年之事另有隐情，三千年来日夜受心魔所困，誓死追随灵猫赎罪。</p>
+                    </div>
+                    <div class="character-card" style="--card-color: #ff6b35;">
+                        <div class="character-icon">🐯</div>
+                        <h4 class="character-name">寅虎</h4>
+                        <p class="character-title">百兽之王 / 灵猫旧徒</p>
+                        <p class="character-desc">啸风绝岭镇守者，曾拜灵猫为师习得伏击腾挪之法。后因乱世信念动摇，与师尊对峙于绝岭之上。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第一卷：迷途荒野遇故交 -->
+    <section class="chapter-one" id="chapter-one">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-number">— 第一卷 —</span>
+                <h2 class="section-title">迷途荒野遇故交<br>子鼠垂首悔前尘</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">新手引导关 · 连接无名之地与神州大地的灰暗交界</p>
+            </div>
+
+            <!-- 无名之地界面图 -->
+            <div class="story-image reveal">
+                <img src="./无名之地界面.png" alt="无名之地界面">
+                <p class="image-caption">图2 无名之地——灵猫诞生之所</p>
+            </div>
+
+            <div class="encounter-scene reveal">
+                <div class="scene-visual">
+                    <div class="scene-circle"></div>
+                    <div class="scene-circle"></div>
+                    <div class="scene-circle"></div>
+                    <div class="scene-center">⚔️</div>
+                </div>
+                <div class="scene-content">
+                    <h3>宿命重逢</h3>
+                    <p>灵猫踏出无名之地，只身走入风沙弥漫的<strong>迷途荒野</strong>。此地乃是踏入生肖神域的必经之路。狂风之中，一道佝偻的身影拦住了去路——那身影手持点妖簿，周身散发着淡淡的神光，正是位列十二生肖之首的<strong>子鼠</strong>。</p>
+
+                    <!-- 鼠城界面图 -->
+                    <div class="story-image" style="margin-top: 1.5rem;">
+                        <img src="./鼠城界面.png" alt="鼠族古城">
+                        <p class="image-caption">图3 鼠族古城——宿命重逢之地</p>
+                    </div>
+                    
+                    <p>灵猫见状，伏下身躯，利爪探出，眼中隐有怒火。当年，正是它将报名参赛的玉牌托付给子鼠，却最终榜上无名。</p>
+                    
+                    <div class="dialogue-box">
+                        「猫大哥……你终于来了！这一拜，鼠弟欠了你三千年啊！」
+                    </div>
+                    
+                    <p>出乎灵猫意料，那传说中狡黠贪婪的子鼠，在看清灵猫面容的刹那，竟是浑身一颤。「吧嗒」一声，点妖簿掉落在地。子鼠双膝一软，伏地恸哭。</p>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0,168,107,0.1); border-radius: 12px; border-left: 3px solid var(--jade-green);">
+                        <strong style="color: var(--jade-green);">道破隐情：</strong>
+                        <p style="margin-top: 0.8rem; color: rgba(232,232,232,0.8);">原来，当年之事另有隐情——或为天道算计，或为子鼠一时怯懦酿成大错。这三千年来，子鼠虽高居神位，却日夜受心魔所困。如今生肖秩序崩裂，子鼠深知，唯有当年那个本该位列仙班的灵猫，才能拨乱反正。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal" style="margin-top: 4rem; text-align: center;">
+                <h3 style="font-family: 'ZCOOL XiaoWei', serif; font-size: 1.6rem; margin-bottom: 1.5rem;">游戏玩法引导</h3>
+                <p style="color: rgba(232,232,232,0.65); margin-bottom: 2rem;">在此关卡中，子鼠将作为NPC引导玩家学习神界斗法规矩</p>
+                <div class="gameplay-tags" style="justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <span class="tag" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">🗡️ <strong>战斗历练</strong><br><span style="font-size: 0.82rem; opacity: 0.8;">击败荒野游魂，收集散落的天地灵气，逐步恢复灵力</span></span>
+                    <span class="tag" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">💨 <strong>身法修行</strong><br><span style="font-size: 0.82rem; opacity: 0.8;">掌握闪避与潜行技巧，于险境中从容穿行</span></span>
+                    <span class="tag" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">✨ <strong>化解戾气</strong><br><span style="font-size: 0.82rem; opacity: 0.8;">平息凡人心中的怨念与敌意，消除世人对猫的误解</span></span>
+                    <span class="tag" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">🔥 <strong>香火供奉</strong><br><span style="font-size: 0.82rem; opacity: 0.8;">汲取百姓虔诚的香火之力，以增强自身神通</span></span>
+                    <span class="tag" style="padding: 0.8rem 1.5rem; font-size: 0.95rem;">🛡️ <strong>破除诅咒</strong><br><span style="font-size: 0.82rem; opacity: 0.8;">以香火之力抵消世间对猫「不祥」的千年诅咒</span></span>
+                </div>
+                <p style="margin-top: 2.5rem; font-size: 1.1rem; color: var(--primary-gold); font-family: 'ZCOOL XiaoWei', serif;">
+                    自此，一猫一鼠，冰释前嫌，并肩踏上了洗刷冤屈、收集九州好感的逆天之路。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第二卷：九大神域 -->
+    <section class="chapter-two" id="chapter-two">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-number">— 第二卷 —</span>
+                <h2 class="section-title">神州异境 九路灵神</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">游历化劫，自选关卡 · 跨过荒野，面临分镇三方的九大神域</p>
+            </div>
+
+            <div class="realms-grid reveal">
+                <!-- 苍灵青华之野 -->
+                <div class="realm-section">
+                    <div class="realm-header">
+                        <h3 class="realm-name">苍灵青华之野</h3>
+                        <p class="realm-symbol">象征厚土与农耕</p>
+                    </div>
+                    <ul class="realm-list">
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐂 丑牛</span>
+                                <span class="zodiac-location">百草丰原</span>
+                            </div>
+                            <p class="zodiac-desc">荡平原间妖祟，替农人护住岁收，得农人香火认可</p>
+                            <!-- 牛城界面图 -->
+                            <div class="story-image" style="margin-top: 1rem;">
+                                <img src="./牛城界面.png" alt="牛族古城" style="border-radius: 8px; border: 1px solid rgba(212,175,55,0.15);">
+                                <p class="image-caption" style="font-size: 0.8rem;">图4 牛族古城——百草丰原镇守地</p>
+                            </div>
+                        </li>
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐰 卯兔</span>
+                                <span class="zodiac-location">望月幽林</span>
+                            </div>
+                            <p class="zodiac-desc">躲避上古奇阵，破除梦魇瘴气，习得治愈灵术</p>
+                        </li>
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐴 午马</span>
+                                <span class="zodiac-location">烈风古道</span>
+                            </div>
+                            <p class="zodiac-desc">斗法赛程，罡风中传递天机密卷送达九霄</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 玄冥幽诡之境 -->
+                <div class="realm-section">
+                    <div class="realm-header">
+                        <h3 class="realm-name">玄冥幽诡之境</h3>
+                        <p class="realm-symbol">象征山川与奇诡</p>
+                    </div>
+                    <ul class="realm-list">
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐍 巳蛇</span>
+                                <span class="zodiac-location">盘龙毒沼</span>
+                            </div>
+                            <p class="zodiac-desc">明辨五行仙草，解救采药客，看破万千幻象</p>
+                        </li>
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐑 未羊</span>
+                                <span class="zodiac-location">云端白石</span>
+                            </div>
+                            <p class="zodiac-desc">引渡迷失幼崽归山，化解香火纷争，展明断是非之大慧</p>
+                        </li>
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐵 申猴</span>
+                                <span class="zodiac-location">千机灵峰</span>
+                            </div>
+                            <p class="zodiac-desc">解开鲁班遗阵与奇门遁甲，寻回被盗镇山法器</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 熙攘红尘之域 -->
+                <div class="realm-section">
+                    <div class="realm-header">
+                        <h3 class="realm-name">熙攘红尘之域</h3>
+                        <p class="realm-symbol">象征市井与家宅</p>
+                    </div>
+                    <ul class="realm-list">
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐓 酉鸡</span>
+                                <span class="zodiac-location">晨曦金顶</span>
+                            </div>
+                            <p class="zodiac-desc">混沌中寻金鸡，助其啼破长夜，击碎「夜猫引灾」传闻</p>
+                        </li>
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐕 戌狗</span>
+                                <span class="zodiac-location">忠义关隘</span>
+                            </div>
+                            <p class="zodiac-desc">并肩作法击退九幽邪祟，昭示灵猫亦为镇宅辟邪之猛兽</p>
+                        </li>
+                        <li class="realm-item">
+                            <div class="realm-item-header">
+                                <span class="zodiac-name">🐖 亥猪</span>
+                                <span class="zodiac-location">丰源宝瓮</span>
+                            </div>
+                            <p class="zodiac-desc">寻天材地宝佐以仙家火候，办饕餮盛宴令百姓忘却偏见</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="reveal" style="margin-top: 4rem; text-align: center; padding: 2.5rem; background: rgba(212,175,55,0.05); border-radius: 16px; border: 1px solid rgba(212,175,55,0.15);">
+                <p style="font-size: 1.15rem; color: rgba(232,232,232,0.85); line-height: 2;">
+                    历经九地劫难，灵猫集齐九大神兽之造化，<br>
+                    身披万民香火，与子鼠行至<span class="highlight">啸风绝岭</span>。<br>
+                    镇守此地的，乃是百兽之王——<span class="highlight">寅虎</span>。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第三卷：啸风绝岭逢旧徒 -->
+    <section class="chapter-three" id="chapter-three">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-number">— 第三卷 —</span>
+                <h2 class="section-title">啸风绝岭逢旧徒<br>灵猫点化百兽王</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">孤峰插云，罡风怒号，不见飞鸟</p>
+            </div>
+
+            <div class="confrontation-layout reveal">
+                <!-- 左侧：灵猫 -->
+                <div class="confront-character">
+                    <div class="confront-avatar">🐱</div>
+                    <h4 class="confront-name">灵猫</h4>
+                    <p class="confront-role">无名之地来者</p>
+                </div>
+
+                <!-- 中间：剧情叙述 -->
+                <div class="battle-narrative">
+                    <div class="narrative-phase">
+                        <span class="phase-label">前尘往事</span>
+                        <h4 class="phase-title">昔日师徒</h4>
+                        <p class="phase-content">
+                            这寅虎昔年未曾发迹、尚在无名之地边缘徘徊时，曾<strong>拜灵猫为师</strong>，习得伏击腾挪之法。灵猫将一身本领倾囊相授，却未料世事无常，师徒二人如今竟要兵戎相见。
+                        </p>
+                    </div>
+
+                    <div class="narrative-phase">
+                        <span class="phase-label">恩怨对峙</span>
+                        <h4 class="phase-title">狂风大作</h4>
+                        <p class="phase-content">
+                            狂风大作中，寅虎现出真身，声如洪钟：
+                        </p>
+                        <div class="dialogue-box">
+                            「师尊，你终究是走出了无名之地。可如今这天地秩序已乱，弱肉强食才是真理！你那套虚无的仁慈，救不了苍生。今日且看你这老骨头，还能接下徒儿几招！」
+                        </div>
+                    </div>
+
+                    <div class="narrative-phase">
+                        <span class="phase-label">化解与降服</span>
+                        <h4 class="phase-title">以德报怨</h4>
+                        <p class="phase-content">
+                            猛虎招招大开大合，势要撕裂天地。灵猫得子鼠从旁协助，施展九大神兽之绝学，于刀光剑影中游走。
+                        </p>
+                        <p class="phase-content" style="margin-top: 1rem;">
+                            战至天昏地暗，寅虎催动禁忌妖法引得体内真气逆流，空门大开。灵猫眼见逆徒命悬一线，<strong>不仅未痛下杀手，反倒聚卯兔灵气于指尖，点中寅虎眉心，化去其一身狂躁戾气。</strong>
+                        </p>
+                        <div class="dialogue-box">
+                            「你……何故收手？当年，我也曾眼睁睁看着你被抛弃！」
+                        </div>
+                        <p class="phase-content" style="margin-top: 1rem;">
+                            灵猫神色平静如水：「我自无名之地而来，为的是证明我命由我，非为杀戮泄愤。你这通天本领，半数为我所授，<strong>为师岂能毁去自家道统？</strong>」
+                        </p>
+                    </div>
+
+                    <div class="narrative-phase">
+                        <span class="phase-label">傲骨顿折</span>
+                        <h4 class="phase-title">誓死追随</h4>
+                        <p class="phase-content">
+                            寅虎闻言，傲骨顿折，伏地叩首：
+                        </p>
+                        <div class="dialogue-box">
+                            「师尊大义！然则，辰龙神尊镇守『怒海天堑』，固守旧日天道，绝不会放你过去。徒儿愿随师尊同往，效犬马之劳！」
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：寅虎 -->
+                <div class="confront-character">
+                    <div class="confront-avatar" style="border-color: rgba(255,107,53,0.4);">🐯</div>
+                    <h4 class="confront-name">寅虎</h4>
+                    <p class="confront-role">百兽之王 / 旧日弟子</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第四卷：怒海天堑斗真龙 -->
+    <section class="chapter-four" id="chapter-four">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-number">— 第四卷 —</span>
+                <h2 class="section-title">怒海天堑斗真龙<br>十二神兽定乾坤</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">碧波万顷，雷劫翻滚，水族神殿隐于海眼之上</p>
+            </div>
+
+            <div class="final-battle reveal">
+                <div class="dragon-altar">
+                    <span class="dragon-icon">🐉</span>
+                    <h3 class="dragon-title">辰龙神尊 · 天地真灵</h3>
+                    <p class="dragon-desc">
+                        辰龙，乃天地真灵，掌管风雨雷电，亦是这摇摇欲坠的旧秩序最后的守护者。<br>
+                        龙神盘踞于九霄云外，俯瞰蝼蚁般的灵猫——<br>
+                        <em style="color: var(--fire-orange);">「区区无名之地的遗弃之物，安敢妄动天道历法？今赐尔等神魂俱灭！」</em>
+                    </p>
+
+                    <div style="position: relative; z-index: 1; margin-top: 3rem;">
+                        <p style="color: rgba(232,232,232,0.7); font-size: 1rem; margin-bottom: 1.5rem;">
+                            九天玄雷如雨柱般落下，怒海翻腾。灵猫与子鼠纵有通天彻地之能，在真龙天威面前亦是左支右绌。
+                        </p>
+                        
+                        <h4 style="color: var(--primary-gold); font-family: 'ZCOOL XiaoWei', serif; font-size: 1.4rem; margin-bottom: 1rem;">群英荟萃，逆天伐道</h4>
+                        <p style="color: rgba(232,232,232,0.75); max-width: 650px; margin: 0 auto 2rem; line-height: 2;">
+                            千钧一发之际，寅虎踏风破浪，以肉身替灵猫挡下一记天雷！<br>
+                            苍穹之上金光乍现，昔日被灵猫折服的<strong>九位生肖神</strong>，听闻重塑天地秩序的宏愿，竟纷纷化作元神法相，降临怒海——
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 十二神兽联盟 -->
+                <div style="margin-top: 4rem; text-align: center;" class="reveal">
+                    <h3 style="font-family: 'ZCOOL XiaoWei', serif; font-size: 1.6rem; color: var(--primary-gold); margin-bottom: 0.5rem;">十一灵兽护道</h3>
+
+                    <!-- 游戏主海报 -->
+                    <div class="poster-image" style="margin-bottom: 2rem;">
+                        <img src="./游戏主海报.png" alt="灵猫传·十二灵守护">
+                        <p class="image-caption">图5 十二灵守护·无名再临</p>
+                    </div>
+                    <p style="color: rgba(232,232,232,0.5); margin-bottom: 2rem;">悬停查看详情</p>
+
+                    <div class="alliance-grid">
+                        <div class="alliance-member"><span class="tooltip">丑牛·参天土盾</span>🐂</div>
+                        <div class="alliance-member"><span class="tooltip">卯兔·甘霖普降</span>🐰</div>
+                        <div class="alliance-member"><span class="tooltip">午马·烈焰焚天</span>🐴</div>
+                        <div class="alliance-member"><span class="tooltip">巳蛇·幻境迷踪</span>🐍</div>
+                        <div class="alliance-member"><span class="tooltip">未羊·云端引渡</span>🐑</div>
+                        <div class="alliance-member"><span class="tooltip">申猴·千机妙算</span>🐵</div>
+                        <div class="alliance-member"><span class="tooltip">酉鸡·金曦破晓</span>🐓</div>
+                        <div class="alliance-member"><span class="tooltip">戌狗·忠诚护主</span>🐕</div>
+                        <div class="alliance-member"><span class="tooltip">亥猪·福泽万民</span>🐖</div>
+                        <div class="alliance-member"><span class="tooltip">寅虎·肉身挡雷</span>🐯</div>
+                        <div class="alliance-member"><span class="tooltip">子鼠·破阵先锋</span>🐭</div>
+                    </div>
+                    
+                    <div style="margin-top: 3rem; padding: 2.5rem; background: rgba(212,175,55,0.05); border-radius: 16px; border: 1px solid rgba(212,175,55,0.15);">
+                        <p style="font-size: 1.08rem; color: rgba(232,232,232,0.85); line-height: 2; margin-bottom: 1.5rem;">
+                            得十一位神兽之仙力灌注，灵猫<strong style="color: var(--primary-gold);">法相天地</strong>，发出一声响彻寰宇的长啸！
+                        </p>
+                        <p style="font-size: 1.05rem; color: rgba(232,232,232,0.8); line-height: 2;">
+                            这一击，汇聚了九州黎民的信任，更带着无名之地千百年的呐喊，<br>
+                            <strong style="color: var(--fire-orange);">生生击碎了辰龙的护体金鳞。</strong>
+                        </p>
+                        <div class="dialogue-box" style="margin-top: 2rem; text-align: left;">
+                            风停雨歇，辰龙收起身形，化作长须长者，眼中无怒，反生长叹：<br><br>
+                            <em>「能令十一灵兽甘愿为你护道，你确实证明了自己。去吧，大天尊于『凌霄宝殿』侯你多时。这天地的命数，由你来定。」</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 终局：凌霄宝殿面圣颜 -->
+    <section class="ending" id="ending">
+        <div class="section-container" style="max-width: 1300px;">
+            <div class="section-header reveal">
+                <span class="section-number">— 终局 —</span>
+                <h2 class="section-title">凌霄宝殿面圣颜<br>一念成魔一念神</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">天庭之上，仙乐飘飘。灵猫在十二神兽的簇拥下，昂首步入凌霄宝殿。</p>
+            </div>
+
+            <div class="reveal" style="max-width: 800px; margin: 0 auto 4rem; text-align: center;">
+                <div class="dialogue-box" style="background: rgba(212,175,55,0.08); font-size: 1.08rem;">
+                    <strong style="color: var(--primary-gold);">玉皇大帝：</strong><br><br>
+                    「灵猫，你自无名之地而来，朕皆知悉。你证明了你的资格。今依天地法则，朕可许你拨乱反正，赐你位列<strong>『十三生肖』</strong>。然，你需知晓……」<br><br>
+                    <span style="color: #ff6b6b;">天地十二地支，契合阴阳四季。若强加其一，旧秩序必将彻底崩塌重组。届时，九州四海将迎百年大劫，生灵涂炭。你，当真要为了证明自己，让天下人为你陪葬？</span>
+                </div>
+                <h3 style="margin-top: 3rem; font-family: 'ZCOOL XiaoWei', serif; font-size: 1.6rem; color: var(--primary-gold);">
+                    ✦ 此时，玩家面临最终抉择 ✦
+                </h3>
+            </div>
+
+            <div class="choices-container reveal">
+                <!-- 选择甲：悲局 -->
+                <div class="choice-card choice-dark">
+                    <span class="choice-badge">⚠ 悲剧结局</span>
+                    <h3 class="choice-title">执念成魔 天道崩殂</h3>
+                    <p class="choice-subtitle">执意成为十三生肖，强行挤入十二地支</p>
+                    
+                    <div class="choice-content">
+                        <div class="choice-scene-title">执念顿起</div>
+                        <p class="choice-scene-text">
+                            灵猫脑海中闪过无名之地中那些绝望的眼神，眼中执念顿起，厉声道：
+                        </p>
+                        <div class="dialogue-box" style="border-color: #ff4444; background: rgba(255,50,50,0.05);">
+                            「千百年来，世界何曾怜悯过我们？若这虚伪的秩序容不下我，吾便将其彻底粉碎！」
+                        </div>
+                        
+                        <div class="choice-scene-title">天地劫变</div>
+                        <p class="choice-scene-text">
+                            灵猫之命星强行挤入十二地支。刹那间，天发杀机，地摇山动。凡间异象频生：江河倒灌淹没万顷良田，大地龟裂吞噬城池。
+                        </p>
+                    </div>
+                    
+                    <div class="choice-result">
+                        <p class="result-label">最终结果</p>
+                        <p class="result-text">
+                            灵猫高坐神位，金光加身。然其低头俯视，唯见人间尸横遍野。它终于把名字刻入了历史，却成了天地间最大的<strong>万古罪人</strong>，在无尽的孤寂与万物的唾骂中，永镇九霄。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 选择乙：真结局 -->
+                <div class="choice-card choice-light">
+                    <span class="choice-badge">★ 真结局</span>
+                    <h3 class="choice-title">放下虚名 守护苍生</h3>
+                    <p class="choice-subtitle">放弃生肖之位，选择另一条道路</p>
+                    
+                    <div class="choice-content">
+                        <div class="choice-scene-title">释然还愿</div>
+                        <p class="choice-scene-text">
+                            灵猫沉默良久。它回望立于身侧的子鼠、寅虎，回想起凡间游历时那些曾用石块驱赶它，最终却为它供奉一碗清水、对它露出笑颜的黎民百姓。
+                        </p>
+                        <div class="dialogue-box" style="border-color: #4ecdc4; background: rgba(0,200,150,0.05);">
+                            「陛下，我不愿做这十三生肖了。」
+                            <br><br>
+                            「我离乡之时，本只为讨个说法。但这一路走来我方知，真正的神明，不在史书里，而在人心上。若正名要以苍生为代价，这名，不要也罢。」
+                        </div>
+                        
+                        <div class="choice-scene-title">敕封暗使</div>
+                        <p class="choice-scene-text">
+                            玉帝闻言，大笑声震九霄：「善哉！拿得起，放得下！你既心系苍生，朕便敕封你为<strong>『无名守护神』</strong>。你不在生肖之列，不受岁星拘束，却与十二神兽同享天地尊荣。自此隐于暗夜，代天巡狩！」
+                        </p>
+                    </div>
+                    
+                    <div class="choice-result">
+                        <p class="result-label">最终结果</p>
+                        <p class="result-text">
+                            一束金光自凌霄落下，原本崩裂的天地秩序奇迹般地复原。待到凡间入夜，月明星稀。宁静的村落屋脊上，一只灵动黑猫如踏雪无痕，身后隐隐跟随十二道宏大神圣的灵兽法相。<br><br>
+                            <strong style="color: #4ecdc4;">世人皆知，那暗夜中闪烁的金瞳，不再是被遗忘的失败者，而是九州黎民最忠诚的守护神。</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卷尾绘影 -->
+            <div class="reveal" style="margin-top: 5rem; text-align: center; padding: 4rem 2rem; background: linear-gradient(180deg, transparent 0%, rgba(212,175,55,0.03) 100%); border-radius: 24px;">
+                <p style="font-size: 2.5rem; margin-bottom: 1rem;">🌙</p>
+                <p style="font-family: 'ZCOOL XiaoWei', serif; font-size: 1.5rem; color: var(--primary-gold); margin-bottom: 1.5rem; line-height: 2;">
+                    一束金光自凌霄落下<br>
+                    原本崩裂的天地秩序奇迹般地复原
+                </p>
+                <p style="font-size: 1.1rem; color: rgba(232,232,232,0.7); line-height: 2; max-width: 650px; margin: 0 auto;">
+                    待到凡间入夜，月明星稀。宁静的村落屋脊上，一只灵动黑猫如踏雪无痕，其身后，隐隐跟随着十二道宏大神圣的灵兽法相。<br><br>
+                    <strong style="color: var(--primary-gold);">世人皆知，那暗夜中闪烁的金瞳，不再是被遗忘的失败者，而是九州黎民最忠诚的守护神。</strong>
+                </p>
+                <p style="margin-top: 3rem; font-family: 'Ma Shan Zheng', cursive; font-size: 1.8rem; color: var(--primary-gold); letter-spacing: 5px;">
+                    （ 游戏完 ）
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p class="footer-quote">「真正的神明，不在史书里，而在人心上」</p>
+        <p class="footer-copyright">《灵猫传：无名之火与十二生肖纪略》· 交互式阅读体验</p>
+        <p class="footer-team" style="margin-top: 0.8rem; letter-spacing: 2px;"><span style="color: var(--primary-gold);">作者：</span><span style="color: #fff;">王思怡</span> <span style="color: var(--primary-gold);">学号：</span><span style="color: #fff;">2023202355</span></p>
+        <p class="footer-hearts">🐱 ✨ 🐉 🐯 🐭</p>
+    </footer>
+
+    <!-- 回到顶部 -->
+    <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+
+    <script>
+        // 页面加载完成后隐藏加载动画
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // 创建粒子效果
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                
+                // 随机颜色变化
+                const colors = ['#d4af37', '#ffd700', '#ffec8b', '#daa520'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.boxShadow = `0 0 ${10 + Math.random() * 15}px ${particle.style.background}`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // 显示/隐藏回到顶部按钮
+            if (window.scrollY > 600) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // 平滑滚动到指定区域
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // 滚动显示动画（Intersection Observer）
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 角色卡片点击效果
+        document.querySelectorAll('.character-card, .realm-item, .choice-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // 创建涟漪效果
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background: rgba(212, 175, 55, 0.3);
+                    pointer-events: none;
+                    transform: translate(-50%, -50%) scale(0);
+                    animation: ripple-effect 0.6s ease-out forwards;
+                    left: ${e.clientX}px;
+                    top: ${e.clientY}px;
+                    z-index: 9999;
+                `;
+                document.body.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // 添加涟漪动画样式
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple-effect {
+                to {
+                    transform: translate(-50%, -50%) scale(20);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 神兽成员悬停时的额外动画
+        document.querySelectorAll('.alliance-member').forEach((member, index) => {
+            member.style.animationDelay = `${index * 0.1}s`;
+            member.addEventListener('mouseenter', () => {
+                member.style.animation = 'none';
+                member.offsetHeight; // 触发重排
+                member.style.animation = `pulse-ring 1s ease-in-out infinite`;
+            });
+            member.addEventListener('mouseleave', () => {
+                member.style.animation = 'none';
+            });
+        });
+
+        console.log('%c🐱 灵猫传：无名之火与十二生肖纪略 %c✨', 
+            'color: #d4af37; font-size: 18px; font-weight: bold;', 
+            'color: #4ecdc4; font-size: 14px;'
+        );
+        console.log('%c感谢您的阅读！这是一个交互式网页作品。', 
+            'color: #888; font-size: 12px;'
+        );
+    </script>
+</body>
+</html>
